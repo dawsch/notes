@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notatnik/editNote.dart';
-import 'package:notatnik/notesNotifier.dart';
+import 'package:notatnik/features/notes/presentation/pages/editNote.dart';
+import 'package:notatnik/features/notes/presentation/notifiers/notesNotifier.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -65,7 +65,7 @@ class NotesPage extends ConsumerWidget{
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notes = ref.watch(notesProvider);
+    final notes = ref.watch(notesNotifierProvider);
     isDarkMode = ref.watch(themeModeProvider) == ThemeMode.dark;
 
     return Scaffold(
@@ -103,18 +103,18 @@ class NotesPage extends ConsumerWidget{
             trailing: IconButton(
               icon: Icon(Icons.delete),
               onPressed: () {
-                ref.read(notesProvider.notifier).removeNote(note.id);
+                ref.read(notesNotifierProvider.notifier).removeNote(note.id);
               },
             ),
             //onTap: () => _editNoteDialog(context, ref, note),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EditNotePage(false, ref, note: note))),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EditNotePage(false, note: note))),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         backgroundColor: Theme.of(context).colorScheme.secondary,
-        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EditNotePage(true, ref))),
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EditNotePage(true))),
         child: Icon(Icons.add, color: Theme.of(context).colorScheme.onSecondary,),
       ),
     );

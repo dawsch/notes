@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notatnik/notesNotifier.dart';
-import 'note.dart';
+import 'package:notatnik/features/notes/presentation/notifiers/notesNotifier.dart';
+import '../../domain/entities/note.dart';
 
-class EditNotePage extends StatelessWidget{
+class EditNotePage extends ConsumerWidget{
   final bool isNew;
-  final WidgetRef ref;
   final Note note;
-  EditNotePage(this.isNew, this.ref, {this.note = const Note(content: "", title: "", id: ""), super.key});
+  EditNotePage(this.isNew, {this.note = const Note(content: "", title: "", id: ""), super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final titleController = TextEditingController(text: note.title);
     final contentController = TextEditingController(text: note.content);
     return Scaffold(
@@ -31,11 +30,11 @@ class EditNotePage extends StatelessWidget{
         backgroundColor: Theme.of(context).colorScheme.secondary,
         onPressed: ()=>{
           if (isNew){
-            ref.read(notesProvider.notifier).addNote(
+            ref.read(notesNotifierProvider.notifier).addNote(
                   titleController.text,
                   contentController.text)
           } else {
-            ref.read(notesProvider.notifier).editNote(
+            ref.read(notesNotifierProvider.notifier).editNote(
                   note.id,
                   titleController.text,
                   contentController.text)
