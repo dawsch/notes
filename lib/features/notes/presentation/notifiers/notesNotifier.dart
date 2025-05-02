@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notatnik/features/notes/presentation/providers/databaseProvider.dart';
 import 'package:notatnik/features/notes/domain/useCases/useCases.dart';
 import 'package:notatnik/features/notes/presentation/providers/noreProviders.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 import '../../domain/entities/note.dart';
 

@@ -13,6 +13,5 @@ final themeModeLoaderProvider = FutureProvider<void>((ref) async {
     ref.read(themeModeProvider.notifier).state = ThemeMode.dark;
   }else{
     ref.read(themeModeProvider.notifier).state = ThemeMode.light;
-
   }
 });

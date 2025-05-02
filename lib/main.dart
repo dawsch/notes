@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notatnik/features/notes/presentation/pages/editNote.dart';
 import 'package:notatnik/features/notes/presentation/notifiers/notesNotifier.dart';
-import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:notatnik/themeProvider.dart';
-import 'package:notatnik/themeModes.dart';
+import 'package:notatnik/features/themeModes/themeProvider.dart';
+import 'package:notatnik/core/themeModes.dart';
 
 
 void main() {
